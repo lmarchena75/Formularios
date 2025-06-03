@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Formulario Empleado</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #58DAC7;
+      margin: 0;
+      padding: 40px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    main {
+      background-color: #ffffff;
+      padding: 30px 40px;
+      border-radius: 12px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      max-width: 450px;
+      width: 100%;
+    }
+
+    h1 {
+      color: #5A70B3;
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 5px;
+      color: #5A70B3;
+      font-weight: bold;
+    }
+
+    input[type="text"],
+    select {
+      width: 100%;
+      padding: 10px;
+      border: 2px solid #31859C;
+      border-radius: 6px;
+      margin-bottom: 20px;
+      font-size: 15px;
+      box-sizing: border-box;
+    }
+
+    button {
+      background-color: #5A70B3;
+      color: white;
+      padding: 12px;
+      width: 100%;
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #F5908D;
+    }
+  </style>
+</head>
+<body>
+
+  <main>
+    <h1>Formulario Empleado</h1>
+    <form onsubmit="return validarFormulario()">
+      <!-- Id de Empleado -->
+      <label for="idEmpleado">ID de Empleado (14 caracteres):</label>
+      <input type="text" id="idEmpleado" name="idEmpleado" maxlength="14" required pattern=".{14}" title="Debe tener exactamente 14 caracteres">
+
+      <!-- Nombre y Apellidos -->
+      <label for="nombreApellidos">Nombre y Apellidos (máx 50 caracteres):</label>
+      <input type="text" id="nombreApellidos" name="nombreApellidos" maxlength="50" required>
+
+      <!-- Género -->
+      <label for="genero">Género:</label>
+      <select id="genero" name="genero" required>
+        <option value="">--Seleccione--</option>
+        <option value="Hombre">Hombre</option>
+        <option value="Mujer">Mujer</option>
+        <option value="Sin informar">Sin informar</option>
+      </select>
+
+      <!-- Botón -->
+      <button type="submit">Solicitar</button>
+    </form>
+  </main>
+
+  <script>
+    function validarFormulario() {
+      const id = document.getElementById("idEmpleado").value.trim();
+      const nombre = document.getElementById("nombreApellidos").value.trim();
+
+      if (id.length !== 14) {
+        alert("El ID de Empleado debe tener exactamente 14 caracteres.");
+        return false;
+      }
+
+      if (nombre.length === 0 || nombre.length > 50) {
+        alert("Nombre y Apellidos no puede estar vacío ni superar los 50 caracteres.");
+        return false;
+      }
+
+      alert("Formulario enviado correctamente.");
+      return true;
+    }
+  </script>
+
+</body>
+</html>
